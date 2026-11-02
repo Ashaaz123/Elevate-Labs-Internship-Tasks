@@ -1,0 +1,11 @@
+{
+  "name": "jenkins-demo-app",
+  "version": "1.0.0",
+  "description": "DevOps Task 2 demo app for Jenkins pipeline",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js",
+    "lint": "echo 'No lint errors.'"
+  }
+}

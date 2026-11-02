@@ -1,0 +1,68 @@
+$ terraform state list
+docker_container.web_container
+docker_image.web_image
+
+$ terraform state show docker_container.web_container
+# docker_container.web_container:
+resource "docker_container" "web_container" {
+    attach              = false
+    command             = [
+        "nginx",
+        "-g",
+        "daemon off;",
+    ]
+    container_read_only = false
+    cpu_shares          = 0
+    dns                 = []
+    dns_opts            = []
+    dns_search          = []
+    entrypoint          = [
+        "/docker-entrypoint.sh",
+    ]
+    env                 = [
+        "ENVIRONMENT=production",
+        "MANAGED_BY=terraform",
+        "PROJECT=elevate-labs-devops-internship",
+    ]
+    gateway             = "172.17.0.1"
+    hostname            = "39a04fd21b7c"
+    id                  = "39a04fd21b7ce3a241e17df20938bf8ad0f3531bfa8974a968a3562479269438"
+    image               = "sha256:8e8e7a02dbf0227fd36814030da64f6916fa521f78ea1f4868f128c6ad1600f6"
+    init                = false
+    ip_address          = "172.17.0.2"
+    ip_prefix_length    = 16
+    ipc_mode            = "private"
+    log_driver          = "json-file"
+    logs                = false
+    max_retry_count     = 0
+    memory              = 0
+    memory_swap         = 0
+    must_run            = true
+    name                = "elevate-devops-nginx-container"
+    read_only_rootfs    = false
+    restart             = "unless-stopped"
+    rm                  = false
+    shm_size            = 64
+    start               = true
+    stdin_open          = false
+    stop_timeout        = 0
+    tty                 = false
+    wait                = false
+    wait_timeout        = 60
+
+    labels {
+        label = "maintainer"
+        value = "devops-intern"
+    }
+    labels {
+        label = "tier"
+        value = "frontend"
+    }
+
+    ports {
+        external = 8080
+        internal = 80
+        ip       = "0.0.0.0"
+        protocol = "tcp"
+    }
+}

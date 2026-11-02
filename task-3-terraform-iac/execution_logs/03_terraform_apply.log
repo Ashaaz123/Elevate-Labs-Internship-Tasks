@@ -1,0 +1,43 @@
+$ terraform apply -auto-approve
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_image.web_image will be created
+  + resource "docker_image" "web_image" {
+      + id           = (known after apply)
+      + image_id     = (known after apply)
+      + keep_locally = false
+      + name         = "nginx:alpine"
+      + repo_digest  = (known after apply)
+    }
+
+  # docker_container.web_container will be created
+  + resource "docker_container" "web_container" {
+      + id           = (known after apply)
+      + image        = (known after apply)
+      + name         = "elevate-devops-nginx-container"
+      + restart      = "unless-stopped"
+      + ports {
+          + external = 8080
+          + internal = 80
+          + protocol = "tcp"
+        }
+    }
+
+docker_image.web_image: Creating...
+docker_image.web_image: Still creating... [10s elapsed]
+docker_image.web_image: Creation complete after 12s [id=sha256:8e8e7a02dbf0227fd36814030da64f6916fa521f78ea1f4868f128c6ad1600f6nginx:alpine]
+docker_container.web_container: Creating...
+docker_container.web_container: Creation complete after 2s [id=39a04fd21b7ce3a241e17df20938bf8ad0f3531bfa8974a968a3562479269438]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+application_url = "http://localhost:8080"
+container_id = "39a04fd21b7ce3a241e17df20938bf8ad0f3531bfa8974a968a3562479269438"
+container_ip_address = "172.17.0.2"
+container_name = "elevate-devops-nginx-container"

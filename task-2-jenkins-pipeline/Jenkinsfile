@@ -1,0 +1,104 @@
+pipeline {
+    agent any
+
+    environment {
+        APP_NAME = 'elevate-jenkins-app'
+        DOCKER_IMAGE = "elevate-labs/${APP_NAME}"
+        DEPLOY_PORT = '5000'
+        CONTAINER_PORT = '3000'
+        // Docker credentials ID configured in Jenkins Credentials Store
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
+    }
+
+    options {
+        timeout(time: 15, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds()
+    }
+
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                echo '=== Stage 1: Checking out source code from Git ==='
+                checkout scm
+                sh 'git log -1 --stat'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                echo '=== Stage 2: Installing project dependencies ==='
+                dir('app') {
+                    sh 'npm ci'
+                }
+            }
+        }
+
+        stage('Run Unit & Integration Tests') {
+            steps {
+                echo '=== Stage 3: Running Automated Test Suite ==='
+                dir('app') {
+                    sh 'npm test'
+                }
+            }
+        }
+
+        stage('Code Quality & Lint') {
+            steps {
+                echo '=== Stage 4: Linting & Static Code Analysis ==='
+                dir('app') {
+                    sh 'npm run lint'
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo "=== Stage 5: Building Docker Image: ${DOCKER_IMAGE}:${BUILD_NUMBER} ==="
+                sh '''
+                    docker build -t ${DOCKER_IMAGE}:${BUILD_NUMBER} -t ${DOCKER_IMAGE}:latest .
+                    docker images | grep ${APP_NAME}
+                '''
+            }
+        }
+
+        stage('Deploy Application') {
+            steps {
+                echo "=== Stage 6: Deploying Application to Staging on Port ${DEPLOY_PORT} ==="
+                sh '''
+                    # Stop and remove existing container if running
+                    docker stop ${APP_NAME}-staging || true
+                    docker rm ${APP_NAME}-staging || true
+
+                    # Launch new container
+                    docker run -d \
+                        --name ${APP_NAME}-staging \
+                        -p ${DEPLOY_PORT}:${CONTAINER_PORT} \
+                        --restart unless-stopped \
+                        ${DOCKER_IMAGE}:${BUILD_NUMBER}
+
+                    # Verify deployment health
+                    sleep 3
+                    curl -f http://localhost:${DEPLOY_PORT}/health || exit 1
+                    echo "Application successfully deployed and verified on port ${DEPLOY_PORT}!"
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            echo '=== Cleaning up workspace and temporary artifacts ==='
+            cleanWs deleteDirs: true, notFailBuild: true
+        }
+        success {
+            echo "Pipeline completed SUCCESSFUL! Build #${BUILD_NUMBER} is now live."
+        }
+        failure {
+            echo "Pipeline FAILED on Build #${BUILD_NUMBER}. Please check console logs."
+        }
+        unstable {
+            echo "Pipeline marked UNSTABLE. Tests or quality checks require attention."
+        }
+    }
+}

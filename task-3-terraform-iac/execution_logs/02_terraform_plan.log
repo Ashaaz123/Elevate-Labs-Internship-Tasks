@@ -1,0 +1,84 @@
+$ terraform plan
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are
+indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # docker_container.web_container will be created
+  + resource "docker_container" "web_container" {
+      + attach                                      = false
+      + command                                     = (known after apply)
+      + container_read_only                         = (known after apply)
+      + cpu_shares                                  = (known after apply)
+      + dns                                         = (known after apply)
+      + dns_opts                                    = (known after apply)
+      + dns_search                                  = (known after apply)
+      + entrypoint                                  = (known after apply)
+      + env                                         = [
+          + "ENVIRONMENT=production",
+          + "MANAGED_BY=terraform",
+          + "PROJECT=elevate-labs-devops-internship",
+        ]
+      + gateway                                     = (known after apply)
+      + hostname                                    = (known after apply)
+      + id                                          = (known after apply)
+      + image                                       = (known after apply)
+      + init                                        = (known after apply)
+      + ip_address                                  = (known after apply)
+      + ip_prefix_length                            = (known after apply)
+      + ipc_mode                                    = (known after apply)
+      + log_driver                                  = (known after apply)
+      + logs                                        = false
+      + max_retry_count                             = (known after apply)
+      + memory                                      = (known after apply)
+      + memory_swap                                 = (known after apply)
+      + must_run                                    = true
+      + name                                        = "elevate-devops-nginx-container"
+      + network_data                                = (known after apply)
+      + read_only_rootfs                            = (known after apply)
+      + restart                                     = "unless-stopped"
+      + rm                                          = false
+      + shm_size                                    = (known after apply)
+      + start                                       = true
+      + stdin_open                                  = false
+      + stop_signal                                 = (known after apply)
+      + stop_timeout                                = (known after apply)
+      + tty                                         = false
+      + wait                                        = false
+      + wait_timeout                                = 60
+
+      + labels {
+          + label = "maintainer"
+          + value = "devops-intern"
+        }
+      + labels {
+          + label = "tier"
+          + value = "frontend"
+        }
+
+      + ports {
+          + external = 8080
+          + internal = 80
+          + ip       = "0.0.0.0"
+          + protocol = "tcp"
+        }
+    }
+
+  # docker_image.web_image will be created
+  + resource "docker_image" "web_image" {
+      + id           = (known after apply)
+      + image_id     = (known after apply)
+      + keep_locally = false
+      + name         = "nginx:alpine"
+      + repo_digest  = (known after apply)
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + application_url      = "http://localhost:8080"
+  + container_id         = (known after apply)
+  + container_ip_address = (known after apply)
+  + container_name       = "elevate-devops-nginx-container"

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Morgan | DevOps & Cloud Engineer</title>
+  <meta name="description" content="DevOps Engineer portfolio showcasing CI/CD automation, Terraform IaC, Docker containers, and Cloud infrastructure.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-icon">&gt;_</span>
+        <span class="logo-text">DevOps<span class="highlight">Portfolio</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#pipeline">CI/CD Flow</a>
+        <a href="#contact" class="btn-primary-sm">Get in Touch</a>
+      </nav>
+      <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark/light mode">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="about">
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span> Elevate Labs DevOps Internship Showcase
+      </div>
+      <h1 class="hero-title">Automating Infrastructure &amp; Scaling Cloud Systems</h1>
+      <p class="hero-subtitle">
+        Specializing in Continuous Integration &amp; Continuous Deployment (CI/CD), Docker Containerization, Infrastructure as Code (Terraform), and Git Distributed Workflows.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary">GitHub Profile</a>
+      </div>
+
+      <!-- Simulated Terminal -->
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">bash - devops@cloud-node: ~</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="prompt">$</span> git status</p>
+          <p class="log-cyan">On branch main - Your branch is up to date with 'origin/main'.</p>
+          <p><span class="prompt">$</span> terraform apply -auto-approve</p>
+          <p class="log-green">Apply complete! Resources: 2 added, 0 changed, 0 destroyed.</p>
+          <p><span class="prompt">$</span> curl -s http://localhost:8080/health | jq .</p>
+          <p class="log-yellow">{ "status": "UP", "deployment": "automated", "latency": "1.2ms" }</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Grid -->
+  <section class="skills-section" id="skills">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Core Competencies</span>
+        <h2>DevOps &amp; Cloud Toolchain</h2>
+        <p>Production tools mastered during the Elevate Labs DevOps Internship.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">⚡</div>
+          <h3>CI / CD Automation</h3>
+          <p>GitHub Actions workflows and Jenkins declarative pipelines with automated linting, testing, and deployment gates.</p>
+          <div class="tag-list">
+            <span>GitHub Actions</span>
+            <span>Jenkins</span>
+            <span>YAML</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🐳</div>
+          <h3>Containerization</h3>
+          <p>Multi-stage Docker builds, image layer caching, security scanning, and container orchestration.</p>
+          <div class="tag-list">
+            <span>Docker</span>
+            <span>Docker Hub</span>
+            <span>Alpine</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🏗️</div>
+          <h3>Infrastructure as Code</h3>
+          <p>Declarative provisioning, plan-apply lifecycle, state management, and provider configuration.</p>
+          <div class="tag-list">
+            <span>Terraform</span>
+            <span>HCL</span>
+            <span>Docker Provider</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🌿</div>
+          <h3>Version Control &amp; Git</h3>
+          <p>Multi-branch strategies (main, dev, feature), Conventional Commits, Pull Request templates, and semantic tagging.</p>
+          <div class="tag-list">
+            <span>Git</span>
+            <span>GitHub Flow</span>
+            <span>PR Templates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internship Projects Showcase -->
+  <section class="projects-section" id="projects">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Deliverables</span>
+        <h2>Internship Task Highlights</h2>
+        <p>Five hands-on DevOps engineering projects completed end-to-end.</p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="badge badge-blue">Task 1</span>
+            <h3>GitHub Actions CI/CD</h3>
+          </div>
+          <p>Automated pipeline triggered on push to main: runs Jest unit tests, builds a lightweight Docker container, and publishes to Docker Hub.</p>
+          <ul class="project-features">
+            <li>✔ Multi-stage Dockerfile</li>
+            <li>✔ Automated health check endpoint</li>
+            <li>✔ Secrets integration for Docker Hub</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="badge badge-amber">Task 2</span>
+            <h3>Jenkins Declarative Pipeline</h3>
+          </div>
+          <p>Full CI/CD lifecycle managed via Jenkinsfile: SCM checkout, npm test execution, container image packaging, and automated staging rollout.</p>
+          <ul class="project-features">
+            <li>✔ Declarative Jenkinsfile pipeline</li>
+            <li>✔ Docker-in-Docker local controller</li>
+            <li>✔ Post-build notifications & cleanup</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="badge badge-green">Task 3</span>
+            <h3>Terraform Container IaC</h3>
+          </div>
+          <p>Provisioned local Docker container infrastructure declaratively using Terraform, capturing init, plan, apply, and state logs.</p>
+          <ul class="project-features">
+            <li>✔ Parameterized variables and outputs</li>
+            <li>✔ Idempotent state management</li>
+            <li>✔ Complete CLI execution logs</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="badge badge-purple">Task 4</span>
+            <h3>Git Version Control Strategy</h3>
+          </div>
+          <p>Engineered multi-branch architecture with main, dev, and feature branches, semantic version tags (v1.0.0, v1.1.0), and PR templates.</p>
+          <ul class="project-features">
+            <li>✔ Automated setup shell script</li>
+            <li>✔ Conventional commit standards</li>
+            <li>✔ Conflict resolution guidelines</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="badge badge-cyan">Task 5</span>
+            <h3>GitHub Pages Static Hosting</h3>
+          </div>
+          <p>Production responsive website hosted for free on GitHub Pages with automated deployment via GitHub Actions.</p>
+          <ul class="project-features">
+            <li>✔ Zero-cost global static hosting</li>
+            <li>✔ Dark/Light theme toggle</li>
+            <li>✔ Mobile responsive CSS grid</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Contact Section -->
+  <footer class="footer-section" id="contact">
+    <div class="section-container">
+      <div class="footer-card">
+        <h2>Ready to Collaborate on Cloud &amp; DevOps?</h2>
+        <p>Completed as part of the Elevate Labs DevOps Internship Program.</p>
+        <div class="footer-links">
+          <a href="mailto:devops.intern@example.com" class="btn btn-primary">Send Email</a>
+          <a href="https://github.com" target="_blank" rel="noopener" class="btn btn-secondary">Visit GitHub</a>
+        </div>
+        <p class="copyright">© 2026 DevOps Internship Program. Built and deployed with GitHub Pages.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

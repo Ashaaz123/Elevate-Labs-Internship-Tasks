@@ -1,0 +1,44 @@
+$ terraform destroy -auto-approve
+docker_image.web_image: Refreshing state... [id=sha256:8e8e7a02dbf0227fd36814030da64f6916fa521f78ea1f4868f128c6ad1600f6nginx:alpine]
+docker_container.web_container: Refreshing state... [id=39a04fd21b7ce3a241e17df20938bf8ad0f3531bfa8974a968a3562479269438]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # docker_container.web_container will be destroyed
+  - resource "docker_container" "web_container" {
+      - id                  = "39a04fd21b7ce3a241e17df20938bf8ad0f3531bfa8974a968a3562479269438" -> null
+      - image               = "sha256:8e8e7a02dbf0227fd36814030da64f6916fa521f78ea1f4868f128c6ad1600f6" -> null
+      - name                = "elevate-devops-nginx-container" -> null
+      - ports               = [
+          - {
+              - external = 8080
+              - internal = 80
+              - ip       = "0.0.0.0"
+              - protocol = "tcp"
+            },
+        ] -> null
+    }
+
+  # docker_image.web_image will be destroyed
+  - resource "docker_image" "web_image" {
+      - id           = "sha256:8e8e7a02dbf0227fd36814030da64f6916fa521f78ea1f4868f128c6ad1600f6nginx:alpine" -> null
+      - name         = "nginx:alpine" -> null
+    }
+
+Plan: 0 to add, 0 to change, 2 to destroy.
+
+Changes to Outputs:
+  - application_url      = "http://localhost:8080" -> null
+  - container_id         = "39a04fd21b7ce3a241e17df20938bf8ad0f3531bfa8974a968a3562479269438" -> null
+  - container_ip_address = "172.17.0.2" -> null
+  - container_name       = "elevate-devops-nginx-container" -> null
+
+docker_container.web_container: Destroying... [id=39a04fd21b7ce3a241e17df20938bf8ad0f3531bfa8974a968a3562479269438]
+docker_container.web_container: Destruction complete after 2s
+docker_image.web_image: Destroying... [id=sha256:8e8e7a02dbf0227fd36814030da64f6916fa521f78ea1f4868f128c6ad1600f6nginx:alpine]
+docker_image.web_image: Destruction complete after 1s
+
+Destroy complete! Resources: 2 destroyed.

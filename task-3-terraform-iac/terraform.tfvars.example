@@ -1,0 +1,4 @@
+container_name    = "elevate-devops-nginx-container"
+docker_image_name = "nginx:alpine"
+external_port     = 8080
+internal_port     = 80
